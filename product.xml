@@ -1,0 +1,84 @@
+<tryton>
+    <data>
+        <record model="ir.ui.view" id="scrap_category_view_form">
+            <field name="model">scrap.category</field>
+            <field name="type">form</field>
+            <field name="name">scrap_category_form</field>
+        </record>
+
+        <record model="ir.ui.view" id="view_scrap_category_tree">
+            <field name="model">scrap.category</field>
+            <field name="type">tree</field>
+            <field name="name">scrap_category_tree</field>
+        </record>
+
+        <record model="ir.action.act_window" id="act_scrap_category">
+            <field name="name">Scrap Category</field>
+            <field name="res_model">scrap.category</field>
+        </record>
+        <record model="ir.action.act_window.view" id="act_scrap_category_list_view">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="view_scrap_category_tree"/>
+            <field name="act_window" ref="act_scrap_category"/>
+        </record>
+
+        <record model="ir.action.act_window.view" id="act_scrap_category_form_view">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="scrap_category_view_form"/>
+            <field name="act_window" ref="act_scrap_category"/>
+        </record>
+
+        <record model="ir.ui.view" id="scrap_template_line_view_form">
+            <field name="model">scrap.template.line</field>
+            <field name="type">form</field>
+            <field name="name">scrap_template_line_form</field>
+        </record>
+
+        <record model="ir.ui.view" id="scrap_template_line_view_tree">
+            <field name="model">scrap.template.line</field>
+            <field name="type">tree</field>
+            <field name="name">scrap_template_line_tree</field>
+        </record>
+
+        <record model="ir.ui.view" id="template_view_form">
+            <field name="model">product.template</field>
+            <field name="name">template_form</field>
+            <field name="inherit" ref="product.template_view_form"/>
+        </record>
+
+        <record model="ir.action.act_window" id="act_scrap_template_line_form">
+            <field name="name">Scrap Template Line</field>
+            <field name="res_model">scrap.template.line</field>
+        </record>
+
+        <record model="ir.action.act_window.view" id="act_scrap_template_line_list_view">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="scrap_template_line_view_tree"/>
+            <field name="act_window" ref="act_scrap_template_line_form"/>
+        </record>
+
+        <record model="ir.action.act_window.view" id="act_scrap_template_line_form_view">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="scrap_template_line_view_form"/>
+            <field name="act_window" ref="act_scrap_template_line_form"/>
+        </record>
+
+        <menuitem id="menu_scrap_category"
+            name="Scrap Categories" parent="product.menu_configuration"
+            action="act_scrap_category" sequence="10"/>
+
+
+         <record model="ir.ui.view" id="shipment_out_view_form">
+            <field name="model">stock.shipment.out</field>
+            <field name="inherit" ref="stock.shipment_out_view_form"/>
+            <field name="name">shipment_form</field>
+        </record>
+
+        <record model="ir.ui.view" id="stock_move_view_form">
+            <field name="model">stock.move</field>
+            <field name="inherit" ref="stock.move_view_form"/>
+            <field name="name">stock_move_form</field>
+        </record>
+
+    </data>
+</tryton>

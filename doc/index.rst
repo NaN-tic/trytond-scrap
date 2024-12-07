@@ -1,0 +1,2 @@
+Trytond-Scrap Module
+####################
