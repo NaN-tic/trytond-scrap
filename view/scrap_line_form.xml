@@ -1,0 +1,6 @@
+<form>
+    <label name="product"/>
+    <field name="product"/>
+    <label name="quantity"/>
+    <field name="quantity"/>
+</form>

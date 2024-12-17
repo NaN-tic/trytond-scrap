@@ -1,0 +1,5 @@
+<tree>
+    <field name="product"/>
+    <field name="quantity"/>
+    <field name="weight"/>
+</tree>

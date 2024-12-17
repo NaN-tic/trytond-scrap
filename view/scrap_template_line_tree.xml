@@ -1,5 +1,5 @@
 <tree>
-    <field name="scrap_product"/>
+    <field name="product"/>
     <field name="quantity_formula"/>
     <field name="weight_formula"/>
 </tree>

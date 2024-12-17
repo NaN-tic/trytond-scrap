@@ -1,6 +1,6 @@
 <form>
-    <label name="scrap_product"/>
-    <field name="scrap_product"/>
+    <label name="product"/>
+    <field name="product"/>
     <label name="quantity_formula"/>
     <field name="quantity_formula"/>
     <label name="weight_formula"/>

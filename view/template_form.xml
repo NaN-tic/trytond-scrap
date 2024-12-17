@@ -11,8 +11,6 @@ this repository contains the full copyright notices and license terms. -->
       <page id="scrap" string="SCRAP">
           <label name="scrap_category"/>
           <field name="scrap_category"/>
-          <label name="scrap_type"/>
-          <field name="scrap_type"/>
           <newline/>
           <field name="scrap_template_lines" colspan="4"/>
       </page>
