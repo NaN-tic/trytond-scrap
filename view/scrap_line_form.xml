@@ -3,4 +3,16 @@
     <field name="product"/>
     <label name="quantity"/>
     <field name="quantity"/>
+    <label name="weight"/>
+    <field name="weight"/>
+    <label name="category"/>
+    <field name="category"/>
+    <label name="party"/>
+    <field name="party"/>
+    <label name="cost_price"/>
+    <field name="cost_price"/>
+    <label name="move"/>
+    <field name="move"/>
+    <label name="shipment"/>
+    <field name="shipment"/>
 </form>

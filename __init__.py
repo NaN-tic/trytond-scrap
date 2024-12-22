@@ -12,6 +12,7 @@ def register():
         product.ScraplineTemplate,
         product.ProductTemplate,
         product.ScrapLine,
+        product.ScrapShipment,
         shipment.ShipmentOut,
         shipment.StockMove,
         module='scrap', type_='model')

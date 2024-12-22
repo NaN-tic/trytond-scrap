@@ -92,5 +92,17 @@
             <field name="name">scrap_line_tree</field>
         </record>
 
+        <record model="ir.ui.view" id="scrap_shipment_view_form">
+            <field name="model">scrap.shipment</field>
+            <field name="type">form</field>
+            <field name="name">scrap_shipment_form</field>
+        </record>
+
+        <record model="ir.ui.view" id="scrap_shipment_view_tree">
+            <field name="model">scrap.shipment</field>
+            <field name="type">tree</field>
+            <field name="name">scrap_shipment_tree</field>
+        </record>
+
     </data>
 </tryton>
