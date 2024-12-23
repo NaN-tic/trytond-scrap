@@ -69,6 +69,8 @@ class ScrapMixin():
     cost_price = fields.Numeric('Cost', digits=(16, 6), required=True)
     move = fields.Many2One('stock.move', 'Move')
     shipment = fields.Many2One('stock.shipment.out', 'Shipment')
+    invoice_line = fields.Many2One('account.invoice.line', 'Invoice Line')
+    invoice = fields.Many2One('account.invoice', 'Invoice')
 
 
     @fields.depends('product', 'category','cost_price')
@@ -124,12 +126,12 @@ class ScrapShipment(ModelSQL, ModelView, ScrapMixin):
                 Max(scrap.create_date).as_('create_date'),
                 Max(scrap.cost_price).as_('cost_price'),
                 Literal(None).as_('move'),
+                Literal(None).as_('invoice_line'),
+                Literal(None).as_('invoice'),
                 scrap.party,
                 group_by=(scrap.product, scrap.category, scrap.shipment,
                     scrap.party)
         )
-        print(query)
-
         return query
 
 

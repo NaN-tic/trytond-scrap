@@ -3,11 +3,13 @@
 # the full copyright notices and license terms.
 from trytond.pool import Pool
 
-from . import product, shipment
+from . import invoice, product, shipment
 
 
 def register():
     Pool.register(
+        invoice.Invoice,
+        invoice.ScrapInvoice,
         product.ScrapCategory,
         product.ScraplineTemplate,
         product.ProductTemplate,
