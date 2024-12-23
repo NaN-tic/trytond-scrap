@@ -1,0 +1,261 @@
+#
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:account.invoice,related_scrap_lines:"
+msgid "Related Scrap Lines"
+msgstr "Líneas de envase relacionadas"
+
+msgctxt "field:product.template,scrap_category:"
+msgid "Scrap Category"
+msgstr "Categoría de envase"
+
+msgctxt "field:product.template,scrap_package:"
+msgid "Scrap Package"
+msgstr "Paquete de envase"
+
+msgctxt "field:product.template,scrap_template_lines:"
+msgid "Scrap Lines"
+msgstr "Líneas de envase"
+
+msgctxt "field:scrap.category,category:"
+msgid "Scrap Category"
+msgstr "Categoría de envase"
+
+msgctxt "field:scrap.category,cost_price:"
+msgid "Cost"
+msgstr "Coste"
+
+msgctxt "field:scrap.category,name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "field:scrap.category,party:"
+msgid "Party"
+msgstr "Tercero"
+
+msgctxt "field:scrap.category,type_:"
+msgid "Scrap Type"
+msgstr "Tipo de envase"
+
+msgctxt "field:scrap.invoice,category:"
+msgid "Category"
+msgstr "Categoría"
+
+msgctxt "field:scrap.invoice,cost_price:"
+msgid "Cost"
+msgstr "Coste"
+
+msgctxt "field:scrap.invoice,invoice:"
+msgid "Invoice"
+msgstr "Factura"
+
+msgctxt "field:scrap.invoice,invoice_line:"
+msgid "Invoice Line"
+msgstr "Línea de factura"
+
+msgctxt "field:scrap.invoice,move:"
+msgid "Move"
+msgstr "Mover"
+
+msgctxt "field:scrap.invoice,party:"
+msgid "Party"
+msgstr "Tercero"
+
+msgctxt "field:scrap.invoice,product:"
+msgid "Product"
+msgstr "Producto"
+
+msgctxt "field:scrap.invoice,quantity:"
+msgid "Quantity"
+msgstr "Cantidad"
+
+msgctxt "field:scrap.invoice,shipment:"
+msgid "Shipment"
+msgstr "Envío"
+
+msgctxt "field:scrap.invoice,weight:"
+msgid "Weight"
+msgstr "Peso"
+
+msgctxt "field:scrap.line,category:"
+msgid "Category"
+msgstr "Categoría"
+
+msgctxt "field:scrap.line,cost_price:"
+msgid "Cost"
+msgstr "Coste"
+
+msgctxt "field:scrap.line,invoice:"
+msgid "Invoice"
+msgstr "Factura"
+
+msgctxt "field:scrap.line,invoice_line:"
+msgid "Invoice Line"
+msgstr "Línea de factura"
+
+msgctxt "field:scrap.line,move:"
+msgid "Move"
+msgstr "Mover"
+
+msgctxt "field:scrap.line,party:"
+msgid "Party"
+msgstr "Tercero"
+
+msgctxt "field:scrap.line,product:"
+msgid "Product"
+msgstr "Producto"
+
+msgctxt "field:scrap.line,quantity:"
+msgid "Quantity"
+msgstr "Cantidad"
+
+msgctxt "field:scrap.line,shipment:"
+msgid "Shipment"
+msgstr "Envío"
+
+msgctxt "field:scrap.line,weight:"
+msgid "Weight"
+msgstr "Peso"
+
+msgctxt "field:scrap.shipment,category:"
+msgid "Category"
+msgstr "Categoría"
+
+msgctxt "field:scrap.shipment,cost_price:"
+msgid "Cost"
+msgstr "Coste"
+
+msgctxt "field:scrap.shipment,invoice:"
+msgid "Invoice"
+msgstr "Factura"
+
+msgctxt "field:scrap.shipment,invoice_line:"
+msgid "Invoice Line"
+msgstr "Línea de factura"
+
+msgctxt "field:scrap.shipment,move:"
+msgid "Move"
+msgstr "Mover"
+
+msgctxt "field:scrap.shipment,party:"
+msgid "Party"
+msgstr "Tercero"
+
+msgctxt "field:scrap.shipment,product:"
+msgid "Product"
+msgstr "Producto"
+
+msgctxt "field:scrap.shipment,quantity:"
+msgid "Quantity"
+msgstr "Cantidad"
+
+msgctxt "field:scrap.shipment,shipment:"
+msgid "Shipment"
+msgstr "Envío"
+
+msgctxt "field:scrap.shipment,weight:"
+msgid "Weight"
+msgstr "Peso"
+
+msgctxt "field:scrap.template.line,product:"
+msgid "Scrap   Product"
+msgstr "Producto de desecho"
+
+msgctxt "field:scrap.template.line,quantity_formula:"
+msgid "Quantity Formula"
+msgstr "Fórmula de cantidad"
+
+msgctxt "field:scrap.template.line,template:"
+msgid "Template"
+msgstr "Plantilla"
+
+msgctxt "field:scrap.template.line,weight_formula:"
+msgid "Weight Formula"
+msgstr "Fórmula de peso"
+
+msgctxt "field:stock.move,scrap_lines:"
+msgid "Scrap Lines"
+msgstr "Líneas de envase"
+
+msgctxt "field:stock.shipment.out,related_scrap_lines:"
+msgid "Related Scrap Lines"
+msgstr "Líneas de envase relacionadas"
+
+msgctxt "field:stock.shipment.out,scrap_lines:"
+msgid "Scrap Lines"
+msgstr "Líneas de envase"
+
+msgctxt "help:scrap.category,party:"
+msgid ""
+"Responsible Third Party :Declaration of the producer\n"
+"        extended responsibility system or systems with which they meet\n"
+"        their obligations for each category of packaging, attaching a\n"
+"        certificate of participation in collective systems or the environmental\n"
+"        identification number in the case of individual systems."
+msgstr ""
+"Tercero Responsable: Declaración del sistema o sistemas de responsabilidad "
+"ampliada del productor con los que cumple sus obligaciones para cada "
+"categoría de envase, adjuntando certificado de participación en sistemas "
+"colectivos o el número de identificación ambiental en el caso de sistemas "
+"individuales."
+
+msgctxt "model:ir.action,name:act_scrap_category"
+msgid "Scrap Category"
+msgstr "Categoría de envase"
+
+msgctxt "model:ir.action,name:act_scrap_template_line_form"
+msgid "Scrap Template Line"
+msgstr "Línea de plantilla de envase"
+
+msgctxt "model:ir.ui.menu,name:menu_scrap_category"
+msgid "Scrap Categories"
+msgstr "Categorías de envase"
+
+msgctxt "model:scrap.category,name:"
+msgid "Scrap Category"
+msgstr "Categoría de envase"
+
+msgctxt "model:scrap.invoice,name:"
+msgid "Scrap Invoice"
+msgstr "Factura de envase"
+
+msgctxt "model:scrap.line,name:"
+msgid "Scrap Line"
+msgstr "Línea de envase"
+
+msgctxt "model:scrap.shipment,name:"
+msgid "Scrap Shipment"
+msgstr "Envío de envase"
+
+msgctxt "model:scrap.template.line,name:"
+msgid "Scrap Template Line"
+msgstr "Línea de plantilla de envase"
+
+msgctxt "selection:scrap.category,category:"
+msgid "Commercial"
+msgstr "Comercial"
+
+msgctxt "selection:scrap.category,category:"
+msgid "Domestic"
+msgstr "Doméstico"
+
+msgctxt "selection:scrap.category,category:"
+msgid "Industrial"
+msgstr "Industrial"
+
+msgctxt "selection:scrap.category,type_:"
+msgid "Both"
+msgstr "Ambos"
+
+msgctxt "selection:scrap.category,type_:"
+msgid "Reusable"
+msgstr "Reutilizable"
+
+msgctxt "selection:scrap.category,type_:"
+msgid "Single Use"
+msgstr "De un solo uso"
+
+msgctxt "view:product.template:"
+msgid "SCRAP"
+msgstr "envase"
