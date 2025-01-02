@@ -99,24 +99,39 @@ class Test(unittest.TestCase):
             consumable=True,
             list_price=Decimal('0'),
             scrap_category=scrap_category,
-            scrap_package=True,
             account_category=account_category,
         )
         template.save()
         box, = template.products
 
-        template = ProductTemplate(
+        box_template = ProductTemplate(
             name='individual box',
             default_uom=unit,
             type='goods',
             consumable=True,
             list_price=Decimal('10'),
             scrap_category=scrap_category,
-            scrap_package=True,
+            account_category=account_category,
+        )
+        box_template.save()
+        individual_box, = box_template.products
+
+        template = ProductTemplate(
+            name='film box',
+            default_uom=unit,
+            type='goods',
+            consumable=True,
+            list_price=Decimal('10'),
+            scrap_category=scrap_category,
             account_category=account_category,
         )
         template.save()
-        individual_box, = template.products
+        film_box, = template.products
+        scrap_line = box_template.scrap_template_lines.new()
+        scrap_line.product = film_box
+        scrap_line.quantity_formula = '1'
+        scrap_line.weight_formula = '0.01'
+        scrap_line.save()
 
         template = ProductTemplate(
             name='Product a',
@@ -129,12 +144,12 @@ class Test(unittest.TestCase):
         scrap_line = template.scrap_template_lines.new()
         scrap_line.product = box
         scrap_line.quantity_formula = '1/30'
-        scrap_line.weight_formula = '1/30 * 0.1'
+        scrap_line.weight_formula = '1/30'
 
         scrap_line = template.scrap_template_lines.new()
         scrap_line.product = individual_box
         scrap_line.quantity_formula = '1/24'
-        scrap_line.weight_formula = '1/24 * 0.1'
+        scrap_line.weight_formula = '1/24'
 
         template.save()
         product_a, = template.products
@@ -164,5 +179,5 @@ class Test(unittest.TestCase):
         move = shipment.outgoing_moves[0]
         self.assertEqual(move.product, product_a)
         self.assertEqual(move.quantity, 2)
-        self.assertEqual(len(move.scrap_lines), 2)
+        self.assertEqual(len(move.scrap_lines), 3)
 

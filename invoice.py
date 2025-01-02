@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from sql.aggregate import Literal, Max, Sum
 from sql.operators import Concat
 from trytond.model import ModelSQL, ModelView, fields
@@ -12,6 +14,14 @@ class Invoice(metaclass=PoolMeta):
 
     related_scrap_lines = fields.One2Many('scrap.invoice', 'invoice',
         'Related Scrap Lines')
+    scrap_amount = fields.Function(fields.Numeric('Scrap Amount'),
+        'get_scrap_amount')
+
+    def get_scrap_amount(self, name):
+        amount = 0
+        for scrap in self.related_scrap_lines:
+            amount += scrap.weight * float(scrap.cost_price)
+        return Decimal(amount).quantize(Decimal('0.0001'))
 
 
 class ScrapInvoice(ModelSQL, ModelView, ScrapMixin):

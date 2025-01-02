@@ -1,3 +1,5 @@
+import math
+
 from sql.aggregate import Literal, Max, Sum
 from trytond.model import ModelSQL, ModelView, fields
 from trytond.pool import Pool, PoolMeta
@@ -37,19 +39,48 @@ class ScraplineTemplate(ModelSQL, ModelView):
         required=True)
     quantity_formula = fields.Char('Quantity Formula', required=True)
     weight_formula = fields.Char('Weight Formula', required=True)
+    round_quantity = fields.Boolean('Round Quantity')
+
+    @staticmethod
+    def default_round_quantity():
+        return True
 
     def get_quantity(self):
+        print("quantity_formula",self.quantity_formula, eval(self.quantity_formula))
         return eval(self.quantity_formula)
 
     def get_weight(self):
         return eval(self.weight_formula)
+
+    def _get_scrap_line(self, quantity):
+        lines = []
+        template = self.product.template
+        scrap_line = ScrapLine()
+        scrap_line.category = template.scrap_category
+        scrap_line.product = self.product
+        if self.round_quantity:
+            scrap_line.quantity = math.ceil(self.get_quantity() * quantity)
+            scrap_line.weight = math.ceil(self.get_weight()
+                * scrap_line.quantity)
+        else:
+            scrap_line.quantity = round(self.get_quantity() * quantity, 4)
+            scrap_line.weight = round(self.get_weight() * quantity, 4)
+        scrap_line.party = template.scrap_category.party
+        scrap_line.cost_price = template.scrap_category.cost_price
+        lines.append(scrap_line)
+        if not template.scrap_template_lines:
+            return lines
+
+        quantity = scrap_line.quantity
+        for scrap_line in template.scrap_template_lines:
+            lines += scrap_line._get_scrap_line(quantity)
+        return lines
 
 
 class ScrapProductMixin():
     __slots__ = ()
 
     scrap_category = fields.Many2One('scrap.category', 'Scrap Category')
-    scrap_package = fields.Boolean('Scrap Package')
     scrap_template_lines = fields.One2Many('scrap.template.line', 'template',
         'Scrap Lines')
 
