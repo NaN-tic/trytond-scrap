@@ -2,11 +2,6 @@
 <!-- The COPYRIGHT file at the top level of
 this repository contains the full copyright notices and license terms. -->
 <data>
-     <xpath expr="/form/notebook/page[@id='general']/field[@name='products']" position="before">
-        <label name="scrap_package"/>
-        <field name="scrap_package"/>
-    </xpath>
-
     <xpath expr="/form/notebook" position="inside">
       <page id="scrap" string="SCRAP">
           <label name="scrap_category"/>

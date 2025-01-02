@@ -4,6 +4,8 @@ this repository contains the full copyright notices and license terms. -->
 <data>
     <xpath expr="/form/notebook/page[@id='outgoing_moves']" position="after">
         <page name="scrap_lines">
+            <label name="scrap_amount"/>
+            <field name="scrap_amount"/>
             <field name="scrap_lines" colspan="4"/>
             <field name="related_scrap_lines" colspan="4"/>
         </page>
