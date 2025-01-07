@@ -28,6 +28,11 @@ class ScrapCategory(ModelSQL, ModelView):
          ('both', 'Both')],
         'Scrap Type', required=True)
     cost_price = fields.Numeric('Cost', digits=(16, 6), required=True)
+    round_quantity = fields.Boolean('Round Quantity')
+
+    @staticmethod
+    def default_round_quantity():
+        return False
 
 
 class ScraplineTemplate(ModelSQL, ModelView):
@@ -39,11 +44,7 @@ class ScraplineTemplate(ModelSQL, ModelView):
         required=True)
     quantity_formula = fields.Char('Quantity Formula', required=True)
     weight_formula = fields.Char('Weight Formula', required=True)
-    round_quantity = fields.Boolean('Round Quantity')
 
-    @staticmethod
-    def default_round_quantity():
-        return False
 
     def get_quantity(self):
         return eval(self.quantity_formula)
@@ -55,9 +56,10 @@ class ScraplineTemplate(ModelSQL, ModelView):
         lines = []
         template = self.product.template
         scrap_line = ScrapLine()
-        scrap_line.category = template.scrap_category
+        scrap_category = template.scrap_category
+        scrap_line.category = scrap_category
         scrap_line.product = self.product
-        if self.round_quantity:
+        if scrap_category.round_quantity:
             scrap_line.quantity = math.ceil(self.get_quantity() * quantity)
             scrap_line.weight = math.ceil(self.get_weight()
                 * scrap_line.quantity)

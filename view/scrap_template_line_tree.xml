@@ -2,5 +2,4 @@
     <field name="product"/>
     <field name="quantity_formula"/>
     <field name="weight_formula"/>
-    <field name="round_quantity"/>
 </tree>

@@ -5,6 +5,4 @@
     <field name="quantity_formula"/>
     <label name="weight_formula"/>
     <field name="weight_formula"/>
-    <label name="round_quantity"/>
-    <field name="round_quantity"/>
 </form>
