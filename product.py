@@ -45,7 +45,6 @@ class ScraplineTemplate(ModelSQL, ModelView):
     quantity_formula = fields.Char('Quantity Formula', required=True)
     weight_formula = fields.Char('Weight Formula', required=True)
 
-
     def get_quantity(self):
         return eval(self.quantity_formula)
 
@@ -61,11 +60,10 @@ class ScraplineTemplate(ModelSQL, ModelView):
         scrap_line.product = self.product
         if scrap_category.round_quantity:
             scrap_line.quantity = math.ceil(self.get_quantity() * quantity)
-            scrap_line.weight = math.ceil(self.get_weight()
-                * scrap_line.quantity)
+            scrap_line.weight = self.get_weight() * scrap_line.quantity
         else:
             scrap_line.quantity = round(self.get_quantity() * quantity, 4)
-            scrap_line.weight = round(self.get_weight() * quantity, 4)
+            scrap_line.weight = round(self.get_weight() * scrap_line.quantity, 4)
 
         scrap_line.party = template.scrap_category.party
         scrap_line.cost_price = template.scrap_category.cost_price
@@ -120,13 +118,32 @@ class ScrapMixin():
     def on_change_with_weight(self, name=None):
         if not self.product:
             return None
-        weight = self.product.template.weight
-        return self.quantity * weight
+        weight = self.product.template.weight or 0
+        return (self.quantity or 0) * weight
 
 
 class ScrapLine(ModelSQL, ModelView, ScrapMixin):
     'Scrap Line'
     __name__ = 'scrap.line'
+
+    @classmethod
+    def create(cls, vlist):
+        lines = super().create(vlist)
+        if not Transaction().context.get('explode_scrap'):
+            return lines
+
+        new_lines = []
+        for line in lines:
+            for sline in line.product.template.scrap_template_lines:
+                explodded = sline._get_scrap_line(line.quantity)
+                for l in explodded:
+                    l.shipment = line.shipment
+
+                new_lines += explodded
+        new_lines = super().create([l._save_values for l in new_lines])
+        return lines + new_lines
+
+
 
 
 class ScrapShipment(ModelSQL, ModelView, ScrapMixin):

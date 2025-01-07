@@ -13,7 +13,7 @@ class Invoice(metaclass=PoolMeta):
     __name__ = 'account.invoice'
 
     related_scrap_lines = fields.One2Many('scrap.invoice', 'invoice',
-        'Related Scrap Lines')
+        'Related Scrap Lines', readonly=True)
     scrap_amount = fields.Function(fields.Numeric('Scrap Amount'),
         'get_scrap_amount')
 
