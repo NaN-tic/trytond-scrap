@@ -43,10 +43,9 @@ class ScraplineTemplate(ModelSQL, ModelView):
 
     @staticmethod
     def default_round_quantity():
-        return True
+        return False
 
     def get_quantity(self):
-        print("quantity_formula",self.quantity_formula, eval(self.quantity_formula))
         return eval(self.quantity_formula)
 
     def get_weight(self):
@@ -65,6 +64,7 @@ class ScraplineTemplate(ModelSQL, ModelView):
         else:
             scrap_line.quantity = round(self.get_quantity() * quantity, 4)
             scrap_line.weight = round(self.get_weight() * quantity, 4)
+
         scrap_line.party = template.scrap_category.party
         scrap_line.cost_price = template.scrap_category.cost_price
         lines.append(scrap_line)
@@ -120,6 +120,7 @@ class ScrapMixin():
             return None
         weight = self.product.template.weight
         return self.quantity * weight
+
 
 class ScrapLine(ModelSQL, ModelView, ScrapMixin):
     'Scrap Line'
