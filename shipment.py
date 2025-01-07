@@ -2,6 +2,7 @@ from decimal import Decimal
 
 from trytond.model import ModelView, fields
 from trytond.pool import Pool, PoolMeta
+from trytond.transaction import Transaction
 
 
 class ShipmentOut(metaclass=PoolMeta):
@@ -43,8 +44,9 @@ class ShipmentOut(metaclass=PoolMeta):
                 scrap_lines += move.get_scrap_lines()
 
         ScrapLine.delete(to_delete)
-        for l in scrap_lines:
-            l.save()
+        with Transaction().set_context(explode_scrap=False):
+            for l in scrap_lines:
+                l.save()
 
 
 class StockMove(metaclass=PoolMeta):
