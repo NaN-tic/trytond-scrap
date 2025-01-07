@@ -9,4 +9,6 @@
     <field name="party"/>
     <label name="cost_price"/>
     <field name="cost_price"/>
+    <label name="round_quantity"/>
+    <field name="round_quantity"/>
 </form>

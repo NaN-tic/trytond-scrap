@@ -3,4 +3,5 @@
     <field name="category"/>
     <field name="type_"/>
     <field name="party"/>
+    <field name="round_quantity"/>
 </tree>
