@@ -46,6 +46,7 @@ class ShipmentOut(metaclass=PoolMeta):
         for l in scrap_lines:
             l.save()
 
+
 class StockMove(metaclass=PoolMeta):
     """
     StockMove class extends the stock.move model to include scrap lines.
