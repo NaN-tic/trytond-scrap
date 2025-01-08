@@ -129,7 +129,7 @@ class ScrapLine(ModelSQL, ModelView, ScrapMixin):
     @classmethod
     def create(cls, vlist):
         lines = super().create(vlist)
-        if not Transaction().context.get('explode_scrap'):
+        if not Transaction().context.get('explode_scrap', True):
             return lines
 
         new_lines = []
