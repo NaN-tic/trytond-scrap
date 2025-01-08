@@ -140,7 +140,7 @@ class ScrapLine(ModelSQL, ModelView, ScrapMixin):
                     l.shipment = line.shipment
 
                 new_lines += explodded
-        new_lines = super().create([l._save_values for l in new_lines])
+        new_lines = super().create([l._save_values() for l in new_lines])
         return lines + new_lines
 
 
