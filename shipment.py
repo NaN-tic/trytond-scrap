@@ -43,10 +43,26 @@ class ShipmentOut(metaclass=PoolMeta):
                 to_delete += move.scrap_lines
                 scrap_lines += move.get_scrap_lines()
 
+        to_delete = list(set(to_delete))
         ScrapLine.delete(to_delete)
-        with Transaction().set_context(explode_scrap=False):
-            for l in scrap_lines:
-                l.save()
+        context = Transaction().context.copy()
+        context['explode_scrap'] = False
+        with Transaction().set_context(context):
+            ScrapLine.create([x._save_values for x in scrap_lines])
+
+    @classmethod
+    @ModelView.button
+    def pick(cls, shipments):
+        pool = Pool()
+        ScrapLine = pool.get('scrap.line')
+        super().pick(shipments)
+        to_delete = []
+        for shipment in cls.browse([x.id for x in shipments]):
+            for move in shipment.outgoing_moves:
+                to_delete += move.scrap_lines
+        to_delete = list(set(to_delete))
+        ScrapLine.delete(to_delete)
+
 
 
 class StockMove(metaclass=PoolMeta):
