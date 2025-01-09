@@ -69,7 +69,7 @@ class ScrapInvoice(ModelSQL, ModelView, ScrapMixin):
                 scrap.category,
                 Sum(scrap.quantity).as_('quantity'),
                 Sum(scrap.weight).as_('weight'),
-                (invoice.id + Literal(id_padding)
+                (invoice.id * Literal(id_padding)
                     + scrap.product).as_('id'),
                 invoice.id.as_('invoice'),
                 Max(scrap.write_uid).as_('write_uid'),

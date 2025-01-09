@@ -144,8 +144,6 @@ class ScrapLine(ModelSQL, ModelView, ScrapMixin):
         return lines + new_lines
 
 
-
-
 class ScrapShipment(ModelSQL, ModelView, ScrapMixin):
     'Scrap Shipment'
     __name__ = 'scrap.shipment'
@@ -168,7 +166,7 @@ class ScrapShipment(ModelSQL, ModelView, ScrapMixin):
                 scrap.category,
                 Sum(scrap.quantity).as_('quantity'),
                 Sum(scrap.weight).as_('weight'),
-                    (scrap.shipment + Literal(id_padding) +
+                    (scrap.shipment * Literal(id_padding) +
                     scrap.product).as_('id'),
                 scrap.shipment,
                 Max(scrap.write_uid).as_('write_uid'),
