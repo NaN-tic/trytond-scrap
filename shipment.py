@@ -39,13 +39,16 @@ class ShipmentOut(metaclass=PoolMeta):
         super().pack(shipments)
         to_delete = []
         for shipment in cls.browse([x.id for x in shipments]):
+            to_delete += shipment.scrap_lines
             for move in shipment.outgoing_moves:
+                print("move:", move.product.rec_name)
                 to_delete += move.scrap_lines
                 scrap_lines += move.get_scrap_lines()
 
         to_delete = list(set(to_delete))
         ScrapLine.delete(to_delete)
         context = Transaction().context.copy()
+
         context['explode_scrap'] = False
         with Transaction().set_context(context):
             ScrapLine.create([x._save_values for x in scrap_lines])
@@ -58,6 +61,7 @@ class ShipmentOut(metaclass=PoolMeta):
         super().pick(shipments)
         to_delete = []
         for shipment in cls.browse([x.id for x in shipments]):
+            to_delete += shipment.scrap_lines
             for move in shipment.outgoing_moves:
                 to_delete += move.scrap_lines
         to_delete = list(set(to_delete))
