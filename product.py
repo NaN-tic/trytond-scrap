@@ -182,8 +182,3 @@ class ScrapShipment(ModelSQL, ModelView, ScrapMixin):
                     scrap.party)
         )
         return query
-
-
-
-
-

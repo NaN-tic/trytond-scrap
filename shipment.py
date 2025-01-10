@@ -51,7 +51,7 @@ class ShipmentOut(metaclass=PoolMeta):
 
         context['explode_scrap'] = False
         with Transaction().set_context(context):
-            ScrapLine.create([x._save_values for x in scrap_lines])
+            ScrapLine.create([x._save_values() for x in scrap_lines])
 
     @classmethod
     @ModelView.button
