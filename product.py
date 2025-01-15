@@ -6,6 +6,11 @@ from trytond.pool import Pool, PoolMeta
 from trytond.transaction import Transaction
 
 
+class Company(metaclass=PoolMeta):
+    __name__ = 'company.company'
+    scrap_message = fields.Text('Scrap Message', translate=True)
+
+
 class ScrapCategory(ModelSQL, ModelView):
     'Scrap Category'
     __name__ = 'scrap.category'

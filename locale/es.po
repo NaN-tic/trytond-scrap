@@ -6,10 +6,13 @@ msgctxt "field:account.invoice,related_scrap_lines:"
 msgid "Related Scrap Lines"
 msgstr "Líneas de envase relacionadas"
 
-
 msgctxt "field:account.invoice,scrap_amount:"
 msgid "Scrap Amount"
 msgstr "Cantidad de envases"
+
+msgctxt "field:company.company,scrap_message:"
+msgid "Scrap Message"
+msgstr "Mensaje para envases"
 
 msgctxt "field:product.template,scrap_category:"
 msgid "Scrap Category"
@@ -224,7 +227,6 @@ msgstr "Línea de plantilla de envase"
 msgctxt "model:ir.ui.menu,name:menu_scrap_category"
 msgid "Scrap Categories"
 msgstr "Categorías de envase"
-
 
 msgctxt "model:ir.ui.menu,name:menu_scrap_line"
 msgid "Scrap Lines"
