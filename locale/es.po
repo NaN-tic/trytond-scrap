@@ -6,13 +6,14 @@ msgctxt "field:account.invoice,related_scrap_lines:"
 msgid "Related Scrap Lines"
 msgstr "Líneas de envase relacionadas"
 
+
+msgctxt "field:account.invoice,scrap_amount:"
+msgid "Scrap Amount"
+msgstr "Cantidad de envases"
+
 msgctxt "field:product.template,scrap_category:"
 msgid "Scrap Category"
 msgstr "Categoría de envase"
-
-msgctxt "field:product.template,scrap_package:"
-msgid "Scrap Package"
-msgstr "Paquete de envase"
 
 msgctxt "field:product.template,scrap_template_lines:"
 msgid "Scrap Lines"
@@ -33,6 +34,10 @@ msgstr "Nombre"
 msgctxt "field:scrap.category,party:"
 msgid "Party"
 msgstr "Tercero"
+
+msgctxt "field:scrap.category,round_quantity:"
+msgid "Round Quantity"
+msgstr "Redondear Cantidad"
 
 msgctxt "field:scrap.category,type_:"
 msgid "Scrap Type"
@@ -182,6 +187,10 @@ msgctxt "field:stock.shipment.out,related_scrap_lines:"
 msgid "Related Scrap Lines"
 msgstr "Líneas de envase relacionadas"
 
+msgctxt "field:stock.shipment.out,scrap_amount:"
+msgid "Scrap Amount"
+msgstr "Import de envases"
+
 msgctxt "field:stock.shipment.out,scrap_lines:"
 msgid "Scrap Lines"
 msgstr "Líneas de envase"
@@ -204,6 +213,10 @@ msgctxt "model:ir.action,name:act_scrap_category"
 msgid "Scrap Category"
 msgstr "Categoría de envase"
 
+msgctxt "model:ir.action,name:act_scrap_line"
+msgid "Scrap Line"
+msgstr "Línea de envase"
+
 msgctxt "model:ir.action,name:act_scrap_template_line_form"
 msgid "Scrap Template Line"
 msgstr "Línea de plantilla de envase"
@@ -211,6 +224,15 @@ msgstr "Línea de plantilla de envase"
 msgctxt "model:ir.ui.menu,name:menu_scrap_category"
 msgid "Scrap Categories"
 msgstr "Categorías de envase"
+
+
+msgctxt "model:ir.ui.menu,name:menu_scrap_line"
+msgid "Scrap Lines"
+msgstr "Líneas de envase"
+
+msgctxt "model:ir.ui.menu,name:menu_scrap_template_line"
+msgid "Scrap Product"
+msgstr "Plantilla de envase"
 
 msgctxt "model:scrap.category,name:"
 msgid "Scrap Category"
