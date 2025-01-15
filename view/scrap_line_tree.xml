@@ -1,8 +1,10 @@
 <tree>
     <field name="product"/>
+    <field name="category"/>
     <field name="quantity"/>
     <field name="weight"/>
     <field name="category"/>
     <field name="party"/>
     <field name="cost_price"/>
+    <field name="shipment"/>
 </tree>

@@ -12,10 +12,29 @@ from .product import ScrapMixin
 class Invoice(metaclass=PoolMeta):
     __name__ = 'account.invoice'
 
-    related_scrap_lines = fields.One2Many('scrap.invoice', 'invoice',
-        'Related Scrap Lines', readonly=True)
+    # related_scrap_lines = fields.One2Many('scrap.invoice', 'invoice',
+    #     'Related Scrap Lines', readonly=True)
+    # TODO: make table_query work for performance improvement
+
+    related_scrap_lines = fields.Function(fields.One2Many('scrap.line', 'invoice',
+        'Related Scrap Lines', readonly=True), 'get_related_scrap_lines')
     scrap_amount = fields.Function(fields.Numeric('Scrap Amount'),
         'get_scrap_amount')
+
+    def get_related_scrap_lines(self, name):
+        pool = Pool()
+        Scrap = pool.get('scrap.line')
+        shipments = set()
+        for line in self.lines:
+            for move in line.stock_moves:
+                if move.shipment.id in shipments:
+                    continue
+                shipments.add(move.shipment.id)
+
+        scrap_lines = Scrap.search([
+            ('shipment', 'in', list(shipments))
+        ])
+        return scrap_lines
 
     def get_scrap_amount(self, name):
         amount = 0
@@ -51,6 +70,7 @@ class ScrapInvoice(ModelSQL, ModelView, ScrapMixin):
         max_id, = cursor.fetchone()
         id_padding = 10 ** len(str(max_id))
 
+        print("ID PADDING: ", id_padding)
         query = invoice.join(
             line, condition=line.invoice == invoice.id
             ).join(
@@ -85,4 +105,5 @@ class ScrapInvoice(ModelSQL, ModelView, ScrapMixin):
                     scrap.party, invoice.id)
         )
 
+        print("query: ", query)
         return query
