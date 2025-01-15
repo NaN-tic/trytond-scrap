@@ -10,6 +10,7 @@ def register():
     Pool.register(
         invoice.Invoice,
         invoice.ScrapInvoice,
+        product.Company,
         product.ScrapCategory,
         product.ScraplineTemplate,
         product.ProductTemplate,

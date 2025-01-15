@@ -10,6 +10,10 @@ msgctxt "field:account.invoice,scrap_amount:"
 msgid "Scrap Amount"
 msgstr "Quantitat de Envasos"
 
+msgctxt "field:company.company,scrap_message:"
+msgid "Scrap Message"
+msgstr "Missatge d'envasos"
+
 msgctxt "field:product.template,scrap_category:"
 msgid "Scrap Category"
 msgstr "Categoria de envasos"
@@ -33,7 +37,6 @@ msgstr "Nom"
 msgctxt "field:scrap.category,party:"
 msgid "Party"
 msgstr "Tercer"
-
 
 msgctxt "field:scrap.category,round_quantity:"
 msgid "Round Quantity"
@@ -225,11 +228,9 @@ msgctxt "model:ir.ui.menu,name:menu_scrap_category"
 msgid "Scrap Categories"
 msgstr "Categories de envasos"
 
-
 msgctxt "model:ir.ui.menu,name:menu_scrap_line"
 msgid "Scrap Lines"
 msgstr "Línies de envasos"
-
 
 msgctxt "model:ir.ui.menu,name:menu_scrap_template_line"
 msgid "Scrap Product"
