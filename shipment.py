@@ -68,7 +68,6 @@ class ShipmentOut(metaclass=PoolMeta):
         ScrapLine.delete(to_delete)
 
 
-
 class StockMove(metaclass=PoolMeta):
     """
     StockMove class extends the stock.move model to include scrap lines.
