@@ -1,4 +1,5 @@
 <tree>
+    <field name="template"/>
     <field name="product"/>
     <field name="quantity_formula"/>
     <field name="weight_formula"/>
