@@ -41,7 +41,6 @@ class ShipmentOut(metaclass=PoolMeta):
         for shipment in cls.browse([x.id for x in shipments]):
             to_delete += shipment.scrap_lines
             for move in shipment.outgoing_moves:
-                print("move:", move.product.rec_name)
                 to_delete += move.scrap_lines
                 scrap_lines += move.get_scrap_lines()
 
