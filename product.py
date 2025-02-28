@@ -156,14 +156,21 @@ class ScrapShipment(ModelSQL, ModelView, ScrapMixin):
     @classmethod
     def table_query(cls):
         pool = Pool()
-        Shipment = pool.get('stock.shipment.out')
+        # Shipment = pool.get('stock.shipment.out')
+        Product = pool.get('product.product')
         Scrap = pool.get('scrap.line')
 
-        shipment = Shipment.__table__()
+        # shipment = Shipment.__table__()
         scrap = Scrap.__table__()
+        product = Product.__table__()
 
         cursor = Transaction().connection.cursor()
-        cursor.execute(*shipment.select(Max(shipment.id)))
+        # cursor.execute(*shipment.select(Max(shipment.id),
+        #     where=shipment.company == Transaction().context.get('company')))
+        # max_id, = cursor.fetchone()
+        # id_padding = 10 ** len(str(max_id))
+
+        cursor.execute(*product.select(Max(product.id)))
         max_id, = cursor.fetchone()
         id_padding = 10 ** len(str(max_id))
         query = scrap.select(
@@ -171,7 +178,7 @@ class ScrapShipment(ModelSQL, ModelView, ScrapMixin):
                 scrap.category,
                 Sum(scrap.quantity).as_('quantity'),
                 Sum(scrap.weight).as_('weight'),
-                    (scrap.shipment * Literal(id_padding) +
+                (scrap.shipment + Literal(id_padding) +
                     scrap.product).as_('id'),
                 scrap.shipment,
                 Max(scrap.write_uid).as_('write_uid'),
