@@ -27,6 +27,8 @@ class Invoice(metaclass=PoolMeta):
         shipments = set()
         for line in self.lines:
             for move in line.stock_moves:
+                if not isinstance(move.shipment, ModelSQL):
+                    continue
                 if move.shipment.id in shipments:
                     continue
                 shipments.add(move.shipment.id)
