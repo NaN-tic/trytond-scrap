@@ -178,7 +178,7 @@ class ScrapShipment(ModelSQL, ModelView, ScrapMixin):
                 scrap.category,
                 Sum(scrap.quantity).as_('quantity'),
                 Sum(scrap.weight).as_('weight'),
-                (scrap.shipment + Literal(id_padding) +
+                (scrap.product + Literal(id_padding) +
                     scrap.product).as_('id'),
                 scrap.shipment,
                 Max(scrap.write_uid).as_('write_uid'),

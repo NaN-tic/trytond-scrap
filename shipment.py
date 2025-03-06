@@ -13,8 +13,12 @@ class ShipmentOut(metaclass=PoolMeta):
     __name__ = 'stock.shipment.out'
 
     scrap_lines = fields.One2Many('scrap.line', 'shipment', 'Scrap Lines')
-    related_scrap_lines = fields.One2Many('scrap.shipment',
-           'shipment', 'Related Scrap Lines')
+    # TODO: make table_query work for performance improvement
+    # related_scrap_lines = fields.One2Many('scrap.shipment',
+    #        'shipment', 'Related Scrap Lines')
+
+    related_scrap_lines = fields.Function(fields.One2Many('scrap.line',
+        'shipment', 'Related Scrap Lines'), 'on_change_with_related_scrap_lines')
     scrap_amount = fields.Function(fields.Numeric('Scrap Amount',
         digits=(16, 4)), 'get_scrap_amount')
 
@@ -23,6 +27,17 @@ class ShipmentOut(metaclass=PoolMeta):
         for scrap in self.related_scrap_lines:
             amount += scrap.weight * float(scrap.cost_price)
         return Decimal(amount).quantize(Decimal('0.0001'))
+
+    @fields.depends('moves')
+    def on_change_with_related_scrap_lines(self, name=None):
+        pool = Pool()
+        Scrap = pool.get('scrap.line')
+
+        scrap_lines = Scrap.search([
+            ('shipment', '=', self.id)
+        ])
+        return scrap_lines
+
 
     @classmethod
     @ModelView.button
