@@ -17,7 +17,7 @@ class Invoice(metaclass=PoolMeta):
     # TODO: make table_query work for performance improvement
 
     related_scrap_lines = fields.Function(fields.One2Many('scrap.line', 'invoice',
-        'Related Scrap Lines', readonly=True), 'on_change_with_related_scrap_lines')
+        'Related Scrap Lines'), 'on_change_with_related_scrap_lines')
     scrap_amount = fields.Function(fields.Numeric('Scrap Amount'),
         'on_change_with_scrap_amount')
 
@@ -28,16 +28,17 @@ class Invoice(metaclass=PoolMeta):
 
         shipments = set()
         for line in self.lines:
+            if not hasattr(line, 'stock_moves'):
+                continue
+
             for move in line.stock_moves:
-                if not isinstance(move.shipment, ModelSQL):
-                    continue
-                if move.shipment.id in shipments:
+                if not move.shipment or not isinstance(move.shipment, ModelSQL):
                     continue
                 shipments.add(move.shipment.id)
 
         scrap_lines = Scrap.search([
-            ('shipment', 'in', list(shipments))
-        ])
+            ('shipment', 'in', list(shipments)),
+            ])
         return scrap_lines
 
     @fields.depends('related_scrap_lines')
