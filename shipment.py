@@ -34,10 +34,9 @@ class ShipmentOut(metaclass=PoolMeta):
         Scrap = pool.get('scrap.line')
 
         scrap_lines = Scrap.search([
-            ('shipment', '=', self.id)
-        ])
+            ('shipment', '=', self.id),
+            ])
         return scrap_lines
-
 
     @classmethod
     @ModelView.button
