@@ -61,6 +61,8 @@ class ScraplineTemplate(ModelSQL, ModelView):
         template = self.product.template
         scrap_line = ScrapLine()
         scrap_category = template.scrap_category
+        if not scrap_category:
+            return lines
         scrap_line.category = scrap_category
         scrap_line.product = self.product
         if scrap_category.round_quantity:
