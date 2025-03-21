@@ -17,7 +17,8 @@ class Invoice(metaclass=PoolMeta):
     # TODO: make table_query work for performance improvement
 
     related_scrap_lines = fields.Function(fields.One2Many('scrap.line', 'invoice',
-        'Related Scrap Lines'), 'on_change_with_related_scrap_lines')
+        'Related Scrap Lines'), 'on_change_with_related_scrap_lines',
+        setter='set_related_scrap_lines')
     scrap_amount = fields.Function(fields.Numeric('Scrap Amount'),
         'on_change_with_scrap_amount')
 
@@ -40,6 +41,10 @@ class Invoice(metaclass=PoolMeta):
             ('shipment', 'in', list(shipments)),
             ])
         return scrap_lines
+
+    @classmethod
+    def set_related_scrap_lines(cls, invoices, name, value):
+        pass
 
     @fields.depends('related_scrap_lines')
     def on_change_with_scrap_amount(self, name=None):
