@@ -51,16 +51,19 @@ class ScraplineTemplate(ModelSQL, ModelView):
     weight_formula = fields.Char('Weight Formula', required=True)
 
     def get_quantity(self):
-        return eval(self.quantity_formula)
+        return self.quantity_formula is not None and eval(self.quantity_formula) or 0.0
 
     def get_weight(self):
-        return eval(self.weight_formula)
+        return self.weight_formula is not None and eval(self.weight_formula) or 0.0
 
     def _get_scrap_line(self, quantity):
         lines = []
         template = self.product.template
-        scrap_line = ScrapLine()
         scrap_category = template.scrap_category
+        if not scrap_category:
+            return lines
+
+        scrap_line = ScrapLine()
         scrap_line.category = scrap_category
         scrap_line.product = self.product
         if scrap_category.round_quantity:
@@ -107,7 +110,6 @@ class ScrapMixin():
     shipment = fields.Many2One('stock.shipment.out', 'Shipment')
     invoice_line = fields.Many2One('account.invoice.line', 'Invoice Line')
     invoice = fields.Many2One('account.invoice', 'Invoice')
-
 
     @fields.depends('product', 'category','cost_price')
     def on_change_product(self):
@@ -192,5 +194,5 @@ class ScrapShipment(ModelSQL, ModelView, ScrapMixin):
                 scrap.party,
                 group_by=(scrap.product, scrap.category, scrap.shipment,
                     scrap.party)
-        )
+                )
         return query
