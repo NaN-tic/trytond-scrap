@@ -40,7 +40,7 @@ msgstr "Tercer"
 
 msgctxt "field:scrap.category,round_quantity:"
 msgid "Round Quantity"
-msgstr "Arrodonir Quantitat"
+msgstr "Arrodonir quantitat"
 
 msgctxt "field:scrap.category,type_:"
 msgid "Scrap Type"
@@ -192,11 +192,15 @@ msgstr "Línies de envasos relacionades"
 
 msgctxt "field:stock.shipment.out,scrap_amount:"
 msgid "Scrap Amount"
-msgstr "Import Envasos"
+msgstr "Import envasos"
 
 msgctxt "field:stock.shipment.out,scrap_lines:"
 msgid "Scrap Lines"
 msgstr "Línies de envasos"
+
+msgctxt "help:product.template,scrap_category:"
+msgid "Select a scrap category in case the product is scrap"
+msgstr "Selecciona una categoria d'envàs si el producte és envàs"
 
 msgctxt "help:scrap.category,party:"
 msgid ""
@@ -234,7 +238,7 @@ msgstr "Línies de envasos"
 
 msgctxt "model:ir.ui.menu,name:menu_scrap_template_line"
 msgid "Scrap Product"
-msgstr "Plantilla de envasos"
+msgstr "Producte de envasos"
 
 msgctxt "model:scrap.category,name:"
 msgid "Scrap Category"

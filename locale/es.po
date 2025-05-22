@@ -64,7 +64,7 @@ msgstr "Línea de factura"
 
 msgctxt "field:scrap.invoice,move:"
 msgid "Move"
-msgstr "Mover"
+msgstr "Movimiento"
 
 msgctxt "field:scrap.invoice,party:"
 msgid "Party"
@@ -104,7 +104,7 @@ msgstr "Línea de factura"
 
 msgctxt "field:scrap.line,move:"
 msgid "Move"
-msgstr "Mover"
+msgstr "Movimiento"
 
 msgctxt "field:scrap.line,party:"
 msgid "Party"
@@ -144,7 +144,7 @@ msgstr "Línea de factura"
 
 msgctxt "field:scrap.shipment,move:"
 msgid "Move"
-msgstr "Mover"
+msgstr "Movimiento"
 
 msgctxt "field:scrap.shipment,party:"
 msgid "Party"
@@ -198,6 +198,10 @@ msgctxt "field:stock.shipment.out,scrap_lines:"
 msgid "Scrap Lines"
 msgstr "Líneas de envase"
 
+msgctxt "help:product.template,scrap_category:"
+msgid "Select a scrap category in case the product is scrap"
+msgstr "Seleccione una categoría de envase si el producto es un envase"
+
 msgctxt "help:scrap.category,party:"
 msgid ""
 "Responsible Third Party :Declaration of the producer\n"
@@ -226,7 +230,7 @@ msgstr "Línea de plantilla de envase"
 
 msgctxt "model:ir.ui.menu,name:menu_scrap_category"
 msgid "Scrap Categories"
-msgstr "Categorías de envase"
+msgstr "Categorias de envase"
 
 msgctxt "model:ir.ui.menu,name:menu_scrap_line"
 msgid "Scrap Lines"
@@ -234,7 +238,7 @@ msgstr "Líneas de envase"
 
 msgctxt "model:ir.ui.menu,name:menu_scrap_template_line"
 msgid "Scrap Product"
-msgstr "Plantilla de envase"
+msgstr "Producto de envase"
 
 msgctxt "model:scrap.category,name:"
 msgid "Scrap Category"

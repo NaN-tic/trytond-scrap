@@ -180,4 +180,11 @@ class Test(unittest.TestCase):
         self.assertEqual(move.product, product_a)
         self.assertEqual(move.quantity, 2)
         self.assertEqual(len(move.scrap_lines), 3)
+        self.assertEqual(len(shipment.scrap_lines), 3)
+        shipment.click('do')
+        self.assertEqual(shipment.state, 'done')
 
+        sale.reload()
+        invoice, = sale.invoices
+        self.assertEqual(len(invoice.related_scrap_lines), 3)
+        self.assertEqual(invoice.scrap_amount, Decimal('0.0001'))
