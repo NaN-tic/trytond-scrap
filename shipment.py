@@ -1,5 +1,5 @@
 from decimal import Decimal
-
+from trytond.pyson import Eval
 from trytond.model import ModelView, fields
 from trytond.pool import Pool, PoolMeta
 from trytond.transaction import Transaction
@@ -12,7 +12,10 @@ class ShipmentOut(metaclass=PoolMeta):
     """
     __name__ = 'stock.shipment.out'
 
-    scrap_lines = fields.One2Many('scrap.line', 'shipment', 'Scrap Lines')
+    scrap_lines = fields.One2Many('scrap.line', 'shipment', 'Scrap Lines',
+        states={
+            'readonly': Eval('state').in_(['done', 'cancelled']),
+        })
     # TODO: make table_query work for performance improvement
     # related_scrap_lines = fields.One2Many('scrap.shipment',
     #        'shipment', 'Related Scrap Lines')
@@ -37,6 +40,12 @@ class ShipmentOut(metaclass=PoolMeta):
             ('shipment', '=', self.id),
             ])
         return scrap_lines
+
+    @classmethod
+    def copy(cls, shipments, default=None):
+        default = default.copy() if default is not None else {}
+        default.setdefault('scrap_lines')
+        return super().copy(shipments, default=default)
 
     @classmethod
     @ModelView.button
@@ -87,7 +96,10 @@ class StockMove(metaclass=PoolMeta):
     """
     __name__ = 'stock.move'
 
-    scrap_lines = fields.One2Many('scrap.line', 'move', 'Scrap Lines')
+    scrap_lines = fields.One2Many('scrap.line', 'move', 'Scrap Lines',
+        states={
+            'readonly': Eval('state').in_(['done', 'cancelled']),
+        })
 
     def get_scrap_lines(self):
         """
@@ -102,3 +114,9 @@ class StockMove(metaclass=PoolMeta):
                 line.move = self
             scrap_lines += lines
         return scrap_lines
+
+    @classmethod
+    def copy(cls, moves, default=None):
+        default = default.copy() if default is not None else {}
+        default.setdefault('scrap_lines')
+        return super().copy(moves, default=default)

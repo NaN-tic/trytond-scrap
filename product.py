@@ -6,11 +6,6 @@ from trytond.pool import Pool, PoolMeta
 from trytond.transaction import Transaction
 
 
-class Company(metaclass=PoolMeta):
-    __name__ = 'company.company'
-    scrap_message = fields.Text('Scrap Message', translate=True)
-
-
 class ScrapCategory(ModelSQL, ModelView):
     'Scrap Category'
     __name__ = 'scrap.category'
@@ -45,7 +40,7 @@ class ScraplineTemplate(ModelSQL, ModelView):
     __name__ = 'scrap.template.line'
 
     template = fields.Many2One('product.template', 'Template', required=True)
-    product = fields.Many2One('product.product', 'Scrap   Product',
+    product = fields.Many2One('product.product', 'Scrap Product',
         required=True)
     quantity_formula = fields.Char('Quantity Formula', required=True)
     weight_formula = fields.Char('Weight Formula', required=True)
@@ -88,7 +83,8 @@ class ScraplineTemplate(ModelSQL, ModelView):
 class ScrapProductMixin():
     __slots__ = ()
 
-    scrap_category = fields.Many2One('scrap.category', 'Scrap Category')
+    scrap_category = fields.Many2One('scrap.category', 'Scrap Category',
+        help='Select a scrap category in case the product is scrap')
     scrap_template_lines = fields.One2Many('scrap.template.line', 'template',
         'Scrap Lines')
 
