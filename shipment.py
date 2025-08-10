@@ -20,8 +20,9 @@ class ShipmentOut(metaclass=PoolMeta):
     # related_scrap_lines = fields.One2Many('scrap.shipment',
     #        'shipment', 'Related Scrap Lines')
 
-    related_scrap_lines = fields.Function(fields.One2Many('scrap.line',
-        'shipment', 'Related Scrap Lines'), 'on_change_with_related_scrap_lines')
+    related_scrap_lines = fields.Function(fields.Many2Many('scrap.line',
+        None, None, 'Related Scrap Lines'),
+        'on_change_with_related_scrap_lines')
     scrap_amount = fields.Function(fields.Numeric('Scrap Amount',
         digits=(16, 4)), 'get_scrap_amount')
 
