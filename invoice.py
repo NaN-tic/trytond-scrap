@@ -16,7 +16,7 @@ class Invoice(metaclass=PoolMeta):
     #     'Related Scrap Lines', readonly=True)
     # TODO: make table_query work for performance improvement
 
-    related_scrap_lines = fields.Function(fields.One2Many('scrap.line', 'invoice',
+    related_scrap_lines = fields.Function(fields.Many2Many('scrap.line', 'invoice',
         'Related Scrap Lines'), 'on_change_with_related_scrap_lines',
         setter='set_related_scrap_lines')
     scrap_amount = fields.Function(fields.Numeric('Scrap Amount'),
