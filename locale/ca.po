@@ -4,7 +4,7 @@ msgstr "Content-Type: text/plain; charset=utf-8\n"
 
 msgctxt "field:account.invoice,related_scrap_lines:"
 msgid "Related Scrap Lines"
-msgstr "Línies de envasos relacionades"
+msgstr "Línies d'envasos relacionades"
 
 msgctxt "field:account.invoice,scrap_amount:"
 msgid "Scrap Amount"
@@ -16,15 +16,15 @@ msgstr "Missatge d'envasos"
 
 msgctxt "field:product.template,scrap_category:"
 msgid "Scrap Category"
-msgstr "Categoria de envasos"
+msgstr "Categoria d'envasos"
 
 msgctxt "field:product.template,scrap_template_lines:"
 msgid "Scrap Lines"
-msgstr "Línies de envasos"
+msgstr "Línies d'envasos"
 
 msgctxt "field:scrap.category,category:"
 msgid "Scrap Category"
-msgstr "Categoria de envasos"
+msgstr "Categoria d'envasos"
 
 msgctxt "field:scrap.category,cost_price:"
 msgid "Cost"
@@ -44,7 +44,7 @@ msgstr "Arrodonir quantitat"
 
 msgctxt "field:scrap.category,type_:"
 msgid "Scrap Type"
-msgstr "Tipus de envasos"
+msgstr "Tipus d'envasos"
 
 msgctxt "field:scrap.invoice,category:"
 msgid "Category"
@@ -184,11 +184,11 @@ msgstr "Fórmula de pes"
 
 msgctxt "field:stock.move,scrap_lines:"
 msgid "Scrap Lines"
-msgstr "Línies de envasos"
+msgstr "Línies d'envasos"
 
 msgctxt "field:stock.shipment.out,related_scrap_lines:"
 msgid "Related Scrap Lines"
-msgstr "Línies de envasos relacionades"
+msgstr "Línies d'envasos relacionades"
 
 msgctxt "field:stock.shipment.out,scrap_amount:"
 msgid "Scrap Amount"
@@ -196,7 +196,7 @@ msgstr "Import envasos"
 
 msgctxt "field:stock.shipment.out,scrap_lines:"
 msgid "Scrap Lines"
-msgstr "Línies de envasos"
+msgstr "Línies d'envasos"
 
 msgctxt "help:product.template,scrap_category:"
 msgid "Select a scrap category in case the product is scrap"
@@ -218,39 +218,39 @@ msgstr ""
 
 msgctxt "model:ir.action,name:act_scrap_category"
 msgid "Scrap Category"
-msgstr "Categoria de envasos"
+msgstr "Categoria d'envasos"
 
 msgctxt "model:ir.action,name:act_scrap_line"
 msgid "Scrap Line"
-msgstr "Línia de envasos"
+msgstr "Línia d'envasos"
 
 msgctxt "model:ir.action,name:act_scrap_template_line_form"
 msgid "Scrap Template Line"
-msgstr "Línia de plantilla de envasos"
+msgstr "Línia de plantilla d'envasos"
 
 msgctxt "model:ir.ui.menu,name:menu_scrap_category"
 msgid "Scrap Categories"
-msgstr "Categories de envasos"
+msgstr "Categories d'envasos"
 
 msgctxt "model:ir.ui.menu,name:menu_scrap_line"
 msgid "Scrap Lines"
-msgstr "Línies de envasos"
+msgstr "Línies d'envasos"
 
 msgctxt "model:ir.ui.menu,name:menu_scrap_template_line"
 msgid "Scrap Product"
-msgstr "Producte de envasos"
+msgstr "Producte d'envasos"
 
 msgctxt "model:scrap.category,name:"
 msgid "Scrap Category"
-msgstr "Categoria de envasos"
+msgstr "Categoria d'envasos"
 
 msgctxt "model:scrap.invoice,name:"
 msgid "Scrap Invoice"
-msgstr "Factura de envasos"
+msgstr "Factura d'envasos"
 
 msgctxt "model:scrap.line,name:"
 msgid "Scrap Line"
-msgstr "Línia de envasos"
+msgstr "Línia d'envasos"
 
 msgctxt "model:scrap.shipment,name:"
 msgid "Scrap Shipment"
@@ -258,7 +258,7 @@ msgstr "Envasos en l'albarà"
 
 msgctxt "model:scrap.template.line,name:"
 msgid "Scrap Template Line"
-msgstr "Línia de plantilla de envasos"
+msgstr "Línia de plantilla d'envasos"
 
 msgctxt "selection:scrap.category,category:"
 msgid "Commercial"
