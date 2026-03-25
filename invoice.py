@@ -1,11 +1,11 @@
 from decimal import Decimal
 
+from sql import Window
 from sql.aggregate import Literal, Max, Sum
+from sql.functions import RowNumber
 from sql.operators import Concat
 from trytond.model import ModelSQL, ModelView, fields
 from trytond.pool import Pool, PoolMeta
-from trytond.transaction import Transaction
-
 from .product import ScrapMixin
 
 
@@ -75,11 +75,6 @@ class ScrapInvoice(ModelSQL, ModelView, ScrapMixin):
         stock_move_rel = MoveRel.__table__()
         line = InvoiceLine.__table__()
 
-        cursor = Transaction().connection.cursor()
-        cursor.execute(*invoice.select(Max(invoice.id)))
-        max_id, = cursor.fetchone()
-        id_padding = 10 ** len(str(max_id))
-
         query = invoice.join(
             line, condition=line.invoice == invoice.id
             ).join(
@@ -98,8 +93,13 @@ class ScrapInvoice(ModelSQL, ModelView, ScrapMixin):
                 scrap.category,
                 Sum(scrap.quantity).as_('quantity'),
                 Sum(scrap.weight).as_('weight'),
-                (invoice.id * Literal(id_padding)
-                    + scrap.product).as_('id'),
+                RowNumber(window=Window([], order_by=[
+                            invoice.id,
+                            scrap.product,
+                            scrap.category,
+                            scrap.shipment,
+                            scrap.party,
+                            ])).as_('id'),
                 invoice.id.as_('invoice'),
                 Max(scrap.write_uid).as_('write_uid'),
                 Max(scrap.create_uid).as_('create_uid'),

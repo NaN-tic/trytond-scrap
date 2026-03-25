@@ -1,6 +1,8 @@
 import math
 
+from sql import Window
 from sql.aggregate import Literal, Max, Sum
+from sql.functions import RowNumber
 from trytond.model import ModelSQL, ModelView, fields
 from trytond.pool import Pool, PoolMeta
 from trytond.transaction import Transaction
@@ -154,30 +156,20 @@ class ScrapShipment(ModelSQL, ModelView, ScrapMixin):
     @classmethod
     def table_query(cls):
         pool = Pool()
-        # Shipment = pool.get('stock.shipment.out')
-        Product = pool.get('product.product')
         Scrap = pool.get('scrap.line')
 
-        # shipment = Shipment.__table__()
         scrap = Scrap.__table__()
-        product = Product.__table__()
-
-        cursor = Transaction().connection.cursor()
-        # cursor.execute(*shipment.select(Max(shipment.id),
-        #     where=shipment.company == Transaction().context.get('company')))
-        # max_id, = cursor.fetchone()
-        # id_padding = 10 ** len(str(max_id))
-
-        cursor.execute(*product.select(Max(product.id)))
-        max_id, = cursor.fetchone()
-        id_padding = 10 ** len(str(max_id))
         query = scrap.select(
                 scrap.product,
                 scrap.category,
                 Sum(scrap.quantity).as_('quantity'),
                 Sum(scrap.weight).as_('weight'),
-                (scrap.product + Literal(id_padding) +
-                    scrap.product).as_('id'),
+                RowNumber(window=Window([], order_by=[
+                            scrap.product,
+                            scrap.category,
+                            scrap.shipment,
+                            scrap.party,
+                            ])).as_('id'),
                 scrap.shipment,
                 Max(scrap.write_uid).as_('write_uid'),
                 Max(scrap.create_uid).as_('create_uid'),
