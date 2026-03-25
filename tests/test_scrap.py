@@ -25,6 +25,8 @@ class Test(unittest.TestCase):
 
         ProductTemplate = Model.get('product.template')
         ScrapCategory = Model.get('scrap.category')
+        ScrapInvoice = Model.get('scrap.invoice')
+        ScrapShipment = Model.get('scrap.shipment')
         Party = Model.get('party.party')
         ProductUom = Model.get('product.uom')
         Sale = Model.get('sale.sale')
@@ -188,3 +190,19 @@ class Test(unittest.TestCase):
         invoice, = sale.invoices
         self.assertEqual(len(invoice.related_scrap_lines), 3)
         self.assertEqual(invoice.scrap_amount, Decimal('0.0001'))
+
+        scrap_invoices = ScrapInvoice.find([], order=[('id', 'ASC')])
+        self.assertEqual(len(scrap_invoices), 3)
+
+        scrap_invoice_ids = [line.id for line in scrap_invoices]
+        self.assertEqual(scrap_invoice_ids, sorted(scrap_invoice_ids))
+        self.assertEqual(len(scrap_invoice_ids), len(set(scrap_invoice_ids)))
+        self.assertTrue(all(0 < x <= 2147483647 for x in scrap_invoice_ids))
+
+        scrap_shipments = ScrapShipment.find([], order=[('id', 'ASC')])
+        self.assertEqual(len(scrap_shipments), 3)
+
+        scrap_shipment_ids = [line.id for line in scrap_shipments]
+        self.assertEqual(scrap_shipment_ids, sorted(scrap_shipment_ids))
+        self.assertEqual(len(scrap_shipment_ids), len(set(scrap_shipment_ids)))
+        self.assertTrue(all(0 < x <= 2147483647 for x in scrap_shipment_ids))
