@@ -177,10 +177,27 @@ class Test(unittest.TestCase):
         shipment.click('pack')
         shipment.reload()
         move = shipment.outgoing_moves[0]
+        expected_effective_date = move.effective_date
         self.assertEqual(move.product, product_a)
         self.assertEqual(move.quantity, 2)
         self.assertEqual(len(move.scrap_lines), 3)
         self.assertEqual(len(shipment.scrap_lines), 3)
+        for scrap_line in move.scrap_lines:
+            self.assertEqual(scrap_line.move_product, product_a)
+            self.assertEqual(scrap_line.move_effective_date,
+                expected_effective_date)
+
+        ScrapLine = Model.get('scrap.line')
+        self.assertEqual(
+            sorted(x.id for x in ScrapLine.find([
+                        ('move_product', '=', product_a.id),
+                        ])),
+            sorted(x.id for x in move.scrap_lines))
+        self.assertEqual(
+            sorted(x.id for x in ScrapLine.find([
+                        ('move_effective_date', '=', expected_effective_date),
+                        ])),
+            sorted(x.id for x in move.scrap_lines))
         shipment.click('do')
         self.assertEqual(shipment.state, 'done')
 

@@ -129,6 +129,34 @@ class ScrapLine(ModelSQL, ModelView, ScrapMixin):
     'Scrap Line'
     __name__ = 'scrap.line'
 
+    move_effective_date = fields.Function(fields.Date('Date'),
+        'get_move_field', searcher='search_move_effective_date')
+    move_product = fields.Function(fields.Many2One('product.product',
+            'Move Product'),
+        'get_move_field', searcher='search_move_product')
+
+    @classmethod
+    def get_move_field(cls, lines, names):
+        result = {name: {} for name in names}
+        for line in lines:
+            for name in names:
+                value = None
+                if line.move:
+                    if name == 'move_effective_date':
+                        value = line.move.effective_date
+                    elif name == 'move_product' and line.move.product:
+                        value = line.move.product.id
+                result[name][line.id] = value
+        return result
+
+    @classmethod
+    def search_move_effective_date(cls, name, clause):
+        return [('move.effective_date',) + tuple(clause[1:])]
+
+    @classmethod
+    def search_move_product(cls, name, clause):
+        return [('move.product',) + tuple(clause[1:])]
+
     @classmethod
     def create(cls, vlist):
         lines = super().create(vlist)

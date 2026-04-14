@@ -1,6 +1,10 @@
 <form>
     <label name="product"/>
     <field name="product"/>
+    <label name="move_product"/>
+    <field name="move_product"/>
+    <label name="move_effective_date"/>
+    <field name="move_effective_date"/>
     <label name="quantity"/>
     <field name="quantity"/>
     <label name="weight"/>

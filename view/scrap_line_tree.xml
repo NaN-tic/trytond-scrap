@@ -1,5 +1,7 @@
 <tree>
     <field name="product"/>
+    <field name="move_product"/>
+    <field name="move_effective_date"/>
     <field name="category"/>
     <field name="quantity"/>
     <field name="weight"/>
