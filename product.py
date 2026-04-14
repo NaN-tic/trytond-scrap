@@ -129,7 +129,7 @@ class ScrapLine(ModelSQL, ModelView, ScrapMixin):
     'Scrap Line'
     __name__ = 'scrap.line'
 
-    move_effective_date = fields.Function(fields.Date('Move Effective Date'),
+    move_effective_date = fields.Function(fields.Date('Date'),
         'get_move_field', searcher='search_move_effective_date')
     move_product = fields.Function(fields.Many2One('product.product',
             'Move Product'),
