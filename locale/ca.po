@@ -106,6 +106,14 @@ msgctxt "field:scrap.line,move:"
 msgid "Move"
 msgstr "Moviment"
 
+
+msgctxt "field:scrap.line,move_effective_date:"
+msgid "Date"
+msgstr "Data"
+
+msgctxt "field:scrap.line,move_product:"
+msgid "Move Product"
+msgstr "Producte del moviment"
 msgctxt "field:scrap.line,party:"
 msgid "Party"
 msgstr "Tercer"
