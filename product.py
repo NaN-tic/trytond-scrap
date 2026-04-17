@@ -54,6 +54,9 @@ class ScraplineTemplate(ModelSQL, ModelView):
         return self.weight_formula is not None and eval(self.weight_formula) or 0.0
 
     def _get_scrap_line(self, quantity):
+        pool = Pool()
+        ScrapLine = pool.get('scrap.line')
+
         lines = []
         template = self.product.template
         scrap_category = template.scrap_category
