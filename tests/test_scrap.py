@@ -160,7 +160,7 @@ class Test(unittest.TestCase):
         sale = Sale(
             sale_date=today,
             shipment_party=customer,
-            invoice_method='shipment',
+            invoice_method = 'fulfillment',
             shipment_method='order',
             party=customer,
         )
