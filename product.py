@@ -68,10 +68,10 @@ class ScraplineTemplate(ModelSQL, ModelView):
         scrap_line.product = self.product
         if scrap_category.round_quantity:
             scrap_line.quantity = math.ceil(self.get_quantity() * quantity)
-            scrap_line.weight = round(self.get_weight() * scrap_line.quantity, 4)
+            scrap_line.weight = round((self.get_weight() or 0) * scrap_line.quantity, 4)
         else:
             scrap_line.quantity = round(self.get_quantity() * quantity, 4)
-            scrap_line.weight = round(self.get_weight() * scrap_line.quantity, 4)
+            scrap_line.weight = round((self.get_weight() or 0) * scrap_line.quantity, 4)
 
         scrap_line.party = template.scrap_category.party
         scrap_line.cost_price = template.scrap_category.cost_price
