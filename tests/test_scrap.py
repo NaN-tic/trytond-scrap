@@ -1,11 +1,13 @@
 import datetime
 import unittest
 from decimal import Decimal
+from unittest.mock import patch
 
 from proteus import Model
 from trytond.modules.account.tests.tools import create_chart, get_accounts
 from trytond.modules.company.tests.tools import create_company, get_company
 from trytond.modules.currency.tests.tools import get_currency
+from trytond.modules.stock.move import Move as StockMoveModel
 from trytond.tests.test_tryton import drop_db
 from trytond.tests.tools import activate_modules, set_user
 
@@ -21,6 +23,10 @@ class Test(unittest.TestCase):
         super().tearDown()
 
     def test(self):
+        _ = patch.object(
+            StockMoveModel, 'on_change_with_assignation_required',
+            return_value=False).start()
+
         config = activate_modules('scrap')
 
         ProductTemplate = Model.get('product.template')
