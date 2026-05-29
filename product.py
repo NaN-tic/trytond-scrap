@@ -1,5 +1,6 @@
 import math
 
+from simpleeval import simple_eval
 from sql import Window
 from sql.aggregate import Literal, Max, Sum
 from sql.functions import RowNumber
@@ -48,10 +49,12 @@ class ScraplineTemplate(ModelSQL, ModelView):
     weight_formula = fields.Char('Weight Formula', required=True)
 
     def get_quantity(self):
-        return self.quantity_formula is not None and eval(self.quantity_formula) or 0.0
+        return (simple_eval(self.quantity_formula)
+            if self.quantity_formula is not None else 0.0)
 
     def get_weight(self):
-        return self.weight_formula is not None and eval(self.weight_formula) or 0.0
+        return (simple_eval(self.weight_formula)
+            if self.weight_formula is not None else 0.0)
 
     def _get_scrap_line(self, quantity):
         pool = Pool()
