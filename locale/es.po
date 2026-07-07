@@ -106,7 +106,6 @@ msgctxt "field:scrap.line,move:"
 msgid "Move"
 msgstr "Movimiento"
 
-
 msgctxt "field:scrap.line,move_effective_date:"
 msgid "Date"
 msgstr "Fecha"
